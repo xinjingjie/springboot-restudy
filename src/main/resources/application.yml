@@ -1,0 +1,15 @@
+#server:
+#  port: 8080
+#  error:
+#    path: /error
+#
+#person:
+#  name: zxy
+#  age: 18
+#  hand:
+#    - 左手
+#    - 右手
+#  face:
+#    eye: 眼镜
+#    nose: 鼻子
+#    mouth: 嘴巴
