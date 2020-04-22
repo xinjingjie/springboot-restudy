@@ -17,7 +17,7 @@ public class MyErrorAttributes extends DefaultErrorAttributes {
     public Map<String, Object> getErrorAttributes(WebRequest webRequest, boolean includeStackTrace) {
         Map<String, Object> originMap=super.getErrorAttributes(webRequest, includeStackTrace);
         originMap.put("company","xinjingjie");
-        System.out.println(originMap.get("exception"));
+       // System.out.println(originMap.get("exception"));
         Map<String,Object> myErrorInfo= (Map<String, Object>) webRequest.getAttribute("ext", RequestAttributes.SCOPE_REQUEST);
         originMap.put("ext",myErrorInfo);
         return originMap;
