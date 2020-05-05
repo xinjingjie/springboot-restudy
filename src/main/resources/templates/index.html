@@ -1,10 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <h1>首页</h1>
+
+<div sec:authorize="!isAuthenticated()">
+    <h3>请登录</h3>
+    <h3 ><a th:href="@{/loginUser}">登录</a></h3>
+
+</div>
+<div sec:authorize="isAuthenticated()">
+    <h3><span sec:authentication="name"></span>,您好,您是
+        <span sec:authentication="authorities"></span>
+    </h3>
+    <form th:action="@{/logout}" method="post">
+     <input type="submit" th:value="退出">
+    </form>
+</div>
+<div>
+<h2>游客界面</h2>
+<ul>
+    <li><a th:href="@{/visitor/visitor1}">游客界面1</a></li>
+    <li><a th:href="@{/visitor/visitor2}">游客界面2</a></li>
+    <li><a th:href="@{/visitor/visitor3}">游客界面3</a></li>
+</ul>
+</div>
+<div sec:authorize="hasRole('user')">
+<h2>普通用户界面</h2>
+<ul>
+    <li><a th:href="@{/user/user1}">普通用户界面1</a></li>
+    <li><a th:href="@{/user/user2}">普通用户界面2</a></li>
+    <li><a th:href="@{/user/user3}">普通用户界面3</a></li>
+</ul>
+</div>
+<div sec:authorize="hasRole('admin')">
+<h2>超级用户界面</h2>
+<ul>
+    <li><a th:href="@{/admin/admin1}">超级用户界面1</a></li>
+    <li><a th:href="@{/admin/admin2}">超级用户界面2</a></li>
+    <li><a th:href="@{/admin/admin3}">超级用户界面3</a></li>
+</ul>
+</div>
 </body>
 </html>

@@ -70,18 +70,25 @@ public class CustomConfig implements WebMvcConfigurer {
 
     //以编程方式配置嵌入式servlet容器
     //注解方式bean名字默认是方法名，可以使用@bean("beanName")来指定bean名字
-    @Bean
+ //   @Bean
     public WebServerFactoryCustomizer MyTomcatWebServerFactoryCustomizer(){
 
         return new WebServerFactoryCustomizer<ConfigurableTomcatWebServerFactory>() {
             @Override
             public void customize(ConfigurableTomcatWebServerFactory factory) {
+
                 factory.setPort(8080);
             }
         };
     }
 
     //Servlet
+    /*
+    在spring boot中添加自己的Servlet有两种方法，代码注册Servlet和注解自动注册（Filter和Listener也是如此）。
+
+代码注册通过ServletRegistrationBean、 FilterRegistrationBean 和 ServletListenerRegistrationBean 获得控制。 也可以通过实现 ServletContextInitializer 接口直接注册。
+在 SpringBootApplication 上使用@ServletComponentScan 注解后，Servlet、Filter、Listener 可以直接通过 @WebServlet、@WebFilter、@WebListener 注解自动注册，无需其他代码。
+     */
     @Bean
     public ServletRegistrationBean MyFirstServlet(){
         return new ServletRegistrationBean(new MyServlet(),"/servlet");
